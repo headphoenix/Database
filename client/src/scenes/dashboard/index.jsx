@@ -1,4 +1,5 @@
 import React from "react";
+// import "../region/region.scss"
 import FlexBetween from "../../components/FlexBetween";
 import Header from "../../components/Header";
 import {
@@ -59,20 +60,6 @@ const Dashboard = () => {
 
   return (
     <Box m="1.5rem 2.5rem">
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
     </Box>
   );
 };

@@ -50,10 +50,10 @@ const navItems = [
     text: "Members",
     icon: <Groups2Outlined />,
   },
-  {
-    text: "Transactions",
-    icon: <ReceiptLongOutlined />,
-  },
+  // {
+  //   text: "Transactions",
+  //   icon: <ReceiptLongOutlined />,
+  // },
   {
     text: "Geography",
     icon: <PublicOutlined />,
@@ -74,10 +74,10 @@ const navItems = [
     text: "Monthly",
     icon: <CalendarMonthOutlined />,
   },
-  {
-    text: "Breakdown",
-    icon: <PieChartOutlined />,
-  },
+  // {
+  //   text: "Breakdown",
+  //   icon: <PieChartOutlined />,
+  // },
   {
     text: "Management",
     icon: null,
@@ -132,7 +132,7 @@ const Sidebar = ({
               <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
                   <Typography variant="h4" fontWeight="bold">
-                    ECOMVISION
+                    QDS
                   </Typography>
                 </Box>
                 {!isNonMobile && (

@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import Header from "../../components/Header";
 import { useGetRegionsQuery } from "../../state/api";
+import { Link } from "react-router-dom";
 
 const Region = ({
   _id,
@@ -23,6 +24,8 @@ const Region = ({
 }) => {
   const theme = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
+
+  
 
   return (
     <Card
@@ -55,6 +58,7 @@ const Regions = () => {
   console.log(data);
   const isNonMobile = useMediaQuery("(min-width: 1000px)");
 
+
   return (
     <Box m="1.5rem 2.5rem">
       <Header title="REGIONS" subtitle="See the various Regions" />
@@ -78,6 +82,12 @@ const Regions = () => {
               totalMembers,
               description,
             }) => (
+              <Link to="/bacentas" state={{ _id,
+                name,
+                leader,
+                totalMembers,
+                description,
+                }}>
               <Region
                 key={_id}
                 _id={_id}
@@ -86,6 +96,7 @@ const Regions = () => {
                 totalMembers={totalMembers}
                 description={description}
               />
+              </Link>
             )
           )}
         </Box>

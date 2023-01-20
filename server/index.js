@@ -20,8 +20,10 @@ import RegionStat from "./models/RegionStat.js";
 import {
   dataUser,
   dataRegion,
+  dataProductStat,
+  dataTransaction,
   dataOverallStat,
-  // dataProductStat,
+  dataAffiliateStat,
 } from "./data/index.js";
 
 /* CONFIGURATION */
@@ -55,4 +57,8 @@ mongoose
     //OverallStat.insertMany(dataOverallStat);
     // User.insertMany(dataUser);
     //Region.insertMany(dataRegion);
+    
+    // AffiliateStat.insertMany(dataAffiliateStat);
+    // ProductStat.insertMany(dataProductStat);
+    // Transaction.insertMany(dataTransaction);
     }).catch((error) => console.log(`${error} did not connect`));

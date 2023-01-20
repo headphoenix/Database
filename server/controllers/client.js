@@ -25,14 +25,6 @@ export const getRegions = async (req, res) => {
     }
   };
   
-  export const getMembers = async (req, res) => {
-    try {
-      const members = await User.find();
-      res.status(200).json(members);
-    } catch (error) {
-      res.status(404).json({ message: error.message });
-    }
-  };
   
 //   export const getTransactions = async (req, res) => {
 //     try {
