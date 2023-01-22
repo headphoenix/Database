@@ -1,30 +1,17 @@
-import express from "express";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import cors from "cors";
-import dotenv from "dotenv";
-import helmet from "helmet";
-import morgan from "morgan";
-import clientRoutes from "./routes/client.js";
-import generalRoutes from "./routes/general.js";
-import managementRoutes from "./routes/management.js";
-import salesRoutes from "./routes/sales.js";
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const helmet = require("helmet");
+const morgan = require("morgan");   
+const userRoutes = require('./routes/user');
+const bacentaRoutes = require('./routes/bacenta');
+const constituencyRoutes = require('./routes/constituency');
+const regionRoutes = require('./routes/region');
+const adminRoutes = require('./routes/admin');
 
-// data imports
-import User from "./models/User.js";
-import Region from "./models/Region.js";
-import RegionStat from "./models/RegionStat.js";
-// import Transaction from "./models/Transaction.js";
- import OverallStat from "./models/OverallStat.js";
-// import AffiliateStat from "./models/AffiliateStat.js";
-import {
-  dataUser,
-  dataRegion,
-  dataProductStat,
-  dataTransaction,
-  dataOverallStat,
-  dataAffiliateStat,
-} from "./data/index.js";
+
 
 /* CONFIGURATION */
 dotenv.config();
@@ -38,10 +25,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 /* ROUTES */
-app.use("/client", clientRoutes);
-app.use("/general", generalRoutes);
-app.use("/management", managementRoutes);
-app.use("/sales", salesRoutes);
+app.use('/user', userRoutes);
+app.use('/bacenta', bacentaRoutes);
+app.use('/constituency', constituencyRoutes);
+app.use('/region', regionRoutes);
+app.use('/admin', adminRoutes);
+
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
