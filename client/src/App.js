@@ -19,6 +19,9 @@ import Login from "pages/authentication/login";
 import Bacentas from "scenes/bacentas";
 
 import { AuthenticationContext } from "context/authentication/authentication.context";
+import AddMember from "scenes/add-member/add-member.component";
+import LoginPage from "components/login-page/login-page.component";
+import FellowshipData from "scenes/fellowship-data/fellowship-data.component";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -32,6 +35,7 @@ function App() {
       <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
+              <Route path="/login" element={<LoginPage/>} />
             <Route element={<Layout />} >
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
@@ -44,6 +48,8 @@ function App() {
               <Route path="/daily" element={<Daily />} />
               <Route path="/monthly" element={<Monthly />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/add-member" element={<AddMember/>} />
+              <Route path="/fellowship-data" element={<FellowshipData/>} />
               </Route>
           </Routes>
       </ThemeProvider>

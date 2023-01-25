@@ -74,7 +74,7 @@
 //             : { top: 40, right: 80, bottom: 80, left: 80 }
 //         }
 //         sortByValue={true}
-//         innerRadius={0.45}
+//         s={0.45}
 //         activeOuterRadiusOffset={8}
 //         borderWidth={1}
 //         borderColor={{

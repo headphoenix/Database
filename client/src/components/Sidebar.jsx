@@ -19,15 +19,11 @@ import {
   HomeOutlined,
   ShoppingCartOutlined,
   Groups2Outlined,
-  ReceiptLongOutlined,
-  PublicOutlined,
-  PointOfSaleOutlined,
-  TodayOutlined,
-  CalendarMonthOutlined,
   AdminPanelSettingsOutlined,
   TrendingUpOutlined,
-  PieChartOutlined,
 } from "@mui/icons-material";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
@@ -54,26 +50,11 @@ const navItems = [
   //   text: "Transactions",
   //   icon: <ReceiptLongOutlined />,
   // },
-  {
-    text: "Geography",
-    icon: <PublicOutlined />,
-  },
-  {
-    text: "Sales",
-    icon: null,
-  },
-  {
-    text: "Overview",
-    icon: <PointOfSaleOutlined />,
-  },
-  {
-    text: "Daily",
-    icon: <TodayOutlined />,
-  },
-  {
-    text: "Monthly",
-    icon: <CalendarMonthOutlined />,
-  },
+    {
+      text: "Fellowship Data",
+      icon: <FolderOpenIcon />,
+    },
+  
   // {
   //   text: "Breakdown",
   //   icon: <PieChartOutlined />,
@@ -90,6 +71,10 @@ const navItems = [
     text: "Performance",
     icon: <TrendingUpOutlined />,
   },
+  {
+    text: "Add Member",
+    icon: <PersonAddIcon/>,
+  }
 ];
 
 const Sidebar = ({

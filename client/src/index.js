@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { api } from "./state/api";
 import { AuthenticationContextProvider } from "context/authentication/authentication.context";
+import { DataProvider } from "context/chart/chart.context";
 
 const store = configureStore({
   reducer: {
@@ -23,7 +24,10 @@ root.render(
   <React.StrictMode>
     <AuthenticationContextProvider>
     <Provider store={store}>
+      <DataProvider>
+
       <App />
+      </DataProvider>
     </Provider>
     </AuthenticationContextProvider>
   </React.StrictMode>
