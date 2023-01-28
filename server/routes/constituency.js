@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
-const Constituency = require('../models/constituency');
-const User = require('../models/user');
-const Bacenta = require('../models/bacenta');
+const Constituency = require('../model/constituency');
+const User = require('../model/user');
+const Bacenta = require('../model/bacenta');
 
 router.get('/:id', auth, async (req, res) => {
     try {
