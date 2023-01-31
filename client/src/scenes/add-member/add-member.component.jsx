@@ -32,8 +32,6 @@ const AddMember = () => {
           <h2>Add Member</h2>
         </div>
         <div className="inputField">
-
-        <div className="inputField1">
         <form onSubmit={submitHandler}>
           <FormInput
             label="First Name"
@@ -74,13 +72,11 @@ const AddMember = () => {
             </select>
 
           <div className="buttons-container">
-            <Button buttonType="enter">submit</Button>
+            <Button>submit</Button>
           </div>
         </form>
       </div>
-      </div>
-    </div>
-    
+      </div>    
     </div>
   );
 };
