@@ -11,7 +11,10 @@ const constituencyRoutes = require('./routes/constituency');
 const regionRoutes = require('./routes/region');
 const adminRoutes = require('./routes/admin');
 
-
+const corsOptions = {
+  origin: "http://localhost:3001",
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 /* CONFIGURATION */
 dotenv.config();
@@ -22,7 +25,9 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+// app.use(cors());
+app.use(cors(corsOptions));
+
 
 /* ROUTES */
 app.use('/user', userRoutes);

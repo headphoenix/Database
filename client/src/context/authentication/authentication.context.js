@@ -1,83 +1,58 @@
-import React, { useState, createContext } from "react";
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
+// import { Navigate, useNavigate } from "react-router-dom";
 
-import { signInAuthUserWithEmailAndPassword, createAuthUserWithEmailAndPassword, auth } from "../../utils/firebase/firebase.utils";
+const AuthContext = createContext();
 
-import { onAuthStateChanged, signOut } from "firebase/auth"
-
-export const AuthenticationContext = createContext();
-
-
-
-export const AuthenticationContextProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
+const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  onAuthStateChanged(auth, (usr) => {
-    if (usr) {
-      setUser(usr);
-        setIsLoading(false);
-      // ...
-    } else {
-      setIsLoading(false);
-    }
-  });
+  // const navigate = useNavigate()
 
-  const onLogin = (email, password) => {
-    setIsLoading(true);
-    signInAuthUserWithEmailAndPassword(email, password)
-      .then((u) => {
-        setUser(u);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        setIsLoading(false);
-        setError(e.toString());
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get("http://localhost:5001/user/me", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setUser(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error)
+        setLoading(false);
+      }
+    };
+    getUser();
+  }, []);
+
+  const login = async (email, password) => {
+    try {
+      const response = await axios.post("http://localhost:5001/user/login", {
+        email,
+        password,
       });
+      localStorage.setItem("token", response.data.token);
+      setUser(response.data);
+    } catch (error) {
+      console.error(error);
+      // Show an error message to the user
+    }
   };
 
-  const onRegister = (email, password, repeatedPassword) => {
-    setIsLoading(true);
-     if(password !== repeatedPassword) {
-      setError("Error: Passwords do not match");
-      return;
-     }
-     createAuthUserWithEmailAndPassword(email, password)
-      .then((u) => {
-        setUser(u);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        setIsLoading(false);
-        setError(e.toString());
-      });
-
-  }
-
-const onLogout = () => {
-  console.log('Hello')
-  signOut(auth)
-  .then(() => {
-  setUser(null);
-  setError(null);
-}).catch((error) => {
-  console.log(error)
-})};
-
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+  };
 
   return (
-    <AuthenticationContext.Provider
-      value={{
-        isAuthenticated: !!user,
-        user,
-        isLoading,
-        error,
-        onLogin,
-        onRegister,
-        onLogout,
-      }}
-    >
+    <AuthContext.Provider value={{ user, setUser, loading, login, logout }}>
       {children}
-    </AuthenticationContext.Provider>
+    </AuthContext.Provider>
   );
 };
+
+export { AuthContext, AuthenticationContextProvider };

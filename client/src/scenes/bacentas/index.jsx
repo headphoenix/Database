@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import "../region/region.scss"
+import React, { useContext, useState } from "react";
+import "../region/region.scss";
+import "./index.styles.scss";
 import {
   Box,
   Card,
@@ -15,22 +16,29 @@ import {
 import Header from "../../components/Header";
 import { useGetRegionsQuery } from "../../state/api";
 import { Link } from "react-router-dom";
-
+import { DataContext } from "context/chart/chart.context";
+import MyResponsiveLine from "./chart.component";
 
 const Bacentas = () => {
-    const theme = useTheme();
-        
+  const theme = useTheme();
+  const { data } = useContext(DataContext);
+
   return (
     <Box m="1.5rem 2.5rem">
+      <h1 className="title">Constituency Information</h1>
+      <div className="box-container">
+        <div className="box">
           <div className="left">
-            <h1 className="title">Constituency Information</h1>
             <div className="item">
-              <img
-                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                alt=""
-                className="itemImg"
-              />
+              <div className="image">
+                <img
+                  src={require("../../pexels-pixabay-415829.jpg")}
+                  alt=""
+                  className="itemImg"
+                />
+              </div>
               <div className="details">
+                <Header title="BACENTAS" subtitle="List of Customers" />
                 <h2 className="itemTitle"></h2>
                 <div className="detailItem">
                   <span className="itemKey">Phone:</span>
@@ -38,8 +46,7 @@ const Bacentas = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Campus:</span>
-                  <span className="itemValue">
-                  </span>
+                  <span className="itemValue"></span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Assigned Hostel:</span>
@@ -48,10 +55,16 @@ const Bacentas = () => {
               </div>
             </div>
           </div>
-      <Header title="BACENTAS" subtitle="List of Customers" />
-      </Box>
-  )
-}
+          <div className="right">
+            {/* <div className="chart"> */}
+              <MyResponsiveLine data={data} />
+            {/* </div> */}
+          
+          </div>
+        </div>
+      </div>
+    </Box>
+  );
+};
 
-
-export default Bacentas
+export default Bacentas;

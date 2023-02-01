@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   LightModeOutlined,
   DarkModeOutlined,
@@ -24,9 +24,23 @@ import {
   useTheme,
 } from "@mui/material";
 
-const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
+
+import { AuthContext } from "context/authentication/authentication.context";
+import { useNavigate } from "react-router-dom";
+
+
+const Navbar = ({isSidebarOpen, setIsSidebarOpen }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
+  const navigate = useNavigate();
+
+  const { user, logout } = useContext(AuthContext);
+
+  const logoff = () => {
+    logout()
+    navigate("/login")
+
+  }
 
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
@@ -99,13 +113,13 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                   fontSize="0.85rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  {user.name}
+                  Hello
                 </Typography>
                 <Typography
                   fontSize="0.75rem"
                   sx={{ color: theme.palette.secondary[200] }}
                 >
-                  {user.occupation}
+                  Hello
                 </Typography>
               </Box>
               <ArrowDropDownOutlined
@@ -118,7 +132,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
-              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+              <MenuItem onClick={logoff}>Log Out</MenuItem>
             </Menu>
           </FlexBetween>
         </FlexBetween>
